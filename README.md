@@ -27,5 +27,5 @@ Rol de usuario solamente puede visualizar los producto en base a cual categoria 
 
 Rol de administrador puede ver los productos de todos, editar producto, eliminar producto, crear categoria; asi como exportar tabla en pdf y excel
 
-> Nota: Para crear categoria debes tener disponible un usuario que no haya sido asignado a otra categoria, por lo usar el user4 esta libre, tambien puedes registrar un nuevo usuario
+> Nota: Para crear categoria debes tener disponible un usuario que no haya sido asignado a otra categoria, por lo que puedes usar el user4 esta libre, tambien puedes registrar un nuevo usuario
 >
