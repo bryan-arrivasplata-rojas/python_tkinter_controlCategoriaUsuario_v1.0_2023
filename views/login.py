@@ -34,6 +34,7 @@ class LoginWindow:
 
         self.etpassword = tk.Entry(self.win, show="*")
         self.etpassword.pack(pady=5)
+        self.etpassword.bind("<Return>", lambda event: self.login())
 
         # Botón de inicio de sesión
         self.login_button = tk.Button(self.win, text="Iniciar sesión", command=self.login)
@@ -133,7 +134,7 @@ class LoginWindow:
 
         # Botón de registro
         register_button = tk.Button(self.register_window, text="Registrar", command=lambda: self.register_user(et_username.get(), et_password.get(), et_nombre.get(), et_apellido.get(), et_direccion.get(), et_telefono.get()))
-        register_button.pack()
+        register_button.pack(pady=10)
 
     def register_user(self, username, password, nombre, apellido, direccion, telefono):
         # Aquí puedes implementar la lógica para registrar al usuario
