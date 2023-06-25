@@ -3,7 +3,6 @@ import tkinter as tk
 import views.login as login
 from PIL import ImageTk, Image
 
-i=0
 class SplashScreen:
     def __init__(self):
         # create a tkinter window
@@ -36,10 +35,10 @@ class SplashScreen:
         #Barra aumento
         progress = ttk.Style()
         progress.theme_use('clam')
-        progress.configure("Custom.Horizontal.TProgressbar",background="#800404")
+        progress.configure("Custom.Horizontal.TProgressbar",background=color_background)
         self.progres = ttk.Progressbar(self.splash,orient="horizontal",length=400,mode="determinate",style="Custom.Horizontal.TProgressbar")
         self.progres.pack()
-
+        self.i = 0
         self.load()
         #self.splash.after(3000, self.frame)
     def frame(self):
@@ -49,15 +48,15 @@ class SplashScreen:
         self.splash.mainloop()
     
     def load(self):
-        global i
-        if i<=4:
-            txt ='Loading... '+(str(25*i)+'%')
+        if self.i<=4:
+            txt ='Loading... '+(str(25*self.i)+'%')
             self.progress_label.config(text=txt)
             self.progress_label.after(600,self.load)
-            self.progres['value']=25*i
-            i += 1
+            self.progres['value']=25*self.i
+            self.i += 1
         else:
             self.frame()
+            
 if __name__ == "__main__":
     app = SplashScreen()
     app.run()
