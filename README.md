@@ -20,7 +20,7 @@
 
 - Base de datos:
 
-![Database](https://github.com/BryanDaniellAR/python_3.9.7_Tkinter_ControlCategoriaUsuario__v1.0_2022/assets/97413969/14d3b32c-c3bc-46e6-b23a-5398d6d3c33e)
+![Database](https://github.com/BryanDaniellAR/python_3.9.7_Tkinter_ControlCategoriaUsuario__v1.0_2023/assets/97413969/35fccb76-ef66-458f-a324-dad548aec0a5)
 
 ## Uso:
 
