@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 try:
-    from controllers.controller import get_login,get_usuario,register_usuario
+    from controllers.controller import *
     import views.menu as menu
 except ImportError:
     messagebox.showerror("Error", "Ingreso no autorizado")
@@ -141,13 +141,15 @@ class LoginWindow:
         # Puedes usar los datos ingresados en los campos del formulario
         # Utiliza los valores de las variables username, password, nombre, apellido, direccion, telefono
         if(len(username)!=0 and len(password)!=0 and len(nombre)!=0 and len(apellido)!=0 and len(direccion)!=0 and len(telefono)!=0):
-            self.verificar_register = register_usuario(username, password, nombre, apellido, direccion, telefono)
-            if self.verificar_register>0:
+            self.verificar_register = insert_perfil(username, password, nombre, apellido, direccion, telefono)
+            if self.verificar_register == 0:
+                messagebox.showinfo("Creación", "¡Hubo un error al crear usuario!")
+            elif self.verificar_register == -1:
+                messagebox.showinfo("Creación", "El usuario ya existe")
+            else:
                 messagebox.showinfo("Registro de usuario", "¡Registro exitoso!")
                 self.register_window.destroy()
                 #menu.MainMenu(self)
-            else:
-                messagebox.showerror("Registro de usuario", "Sucedio un error al registrar, pruebe nuevamente")
         else:
             messagebox.showerror("Registro de usuario", "No puede dejar campos vacios")
         # Una vez realizado el registro, puedes cerrar la ventana register_window

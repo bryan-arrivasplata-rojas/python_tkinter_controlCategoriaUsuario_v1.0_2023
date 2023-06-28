@@ -260,16 +260,18 @@ class MainMenu:
             for category in categorias:
                 if category[1] == categoria:
                     categoria_id = category[0]
-                    data = create_producto(nombre,category[0])
-                    if data!="":
+                    data = insert_producto(nombre,category[0])
+                    if data == 0:
+                        messagebox.showinfo("Creación", "¡Hubo un error al crear producto!")
+                    elif data == -1:
+                        messagebox.showinfo("Creación", "El producto ya existe")
+                    else:
                         messagebox.showinfo("Creación", "¡Datos creados con exito!")
                         new_product_id = data  # Obtener el ID del nuevo producto creado (si es necesario)
                         if (login_window.session_nombre_rol =="administrador"):
                             self.table.insert("", tk.END, values=(new_product_id, nombre, categoria, f"{login_window.session_usuario}:{login_window.session_nombre} {login_window.session_apellido}"))
                         else:
                             self.table.insert("", tk.END, values=(new_product_id, nombre, categoria))
-                    else:
-                        messagebox.showinfo("Creación", "¡Hubo un error al crear producto!")
                     break       
             # Cerrar el cuadro de diálogo
             self.dialog_create.destroy()
@@ -358,10 +360,12 @@ class MainMenu:
                 if f"{user[1]}: {user[2]} {user[3]}" == usuario:
                     id_usuario = user[0]
                     data = insert_categoria(nombre,id_usuario)
-                    if data!=0:
-                        messagebox.showinfo("Creación categoria", "¡Datos creados con exito!")
-                    else:
+                    if data == 0:
+                        messagebox.showinfo("Creación", "¡Hubo un error al crear la categoria!")
+                    elif data == -1:
                         messagebox.showinfo("Creación", f"Categoria con nombre {nombre} ya existe.")
+                    else:
+                        messagebox.showinfo("Creación categoria", "¡Datos creados con exito!")
                     break
             self.dialog_categoria.destroy()
         else:

@@ -6,27 +6,35 @@ def get(query):
     conn = database()
     cursor = conn.cursor()
     cursor.execute(query)#f"SELECT * FROM {tabla}"
-    registros = cursor.fetchall()
+    result = cursor.fetchall()
     conn.close()
-    return registros
+    return result
 # Consulta POST: Insertar un nuevo registro en una tabla
 def insert(query):
+    conn = database()
+    cursor = conn.cursor()
     try:
-        conn = database()
-        cursor = conn.cursor()
         cursor.execute(query)
         conn.commit()
-        conn.close()
-        return cursor.lastrowid
-    except Exception as e:
-        conn.close()
-        return 0
+        result = cursor.lastrowid
+    except sqlite3.OperationalError:
+        result = 0
+    except sqlite3.IntegrityError:
+        result = -1
+    conn.close()
+    return result
 
 # Consulta PUT: Actualizar un registro existente en una tabla
 def update_delete(query):
     conn = database()
     cursor = conn.cursor()
-    cursor.execute(query)
-    conn.commit()
+    try:
+        cursor.execute(query)
+        conn.commit()
+        result = cursor.rowcount
+    except sqlite3.OperationalError:
+        result = 0
+    except sqlite3.IntegrityError:
+        result = -1
     conn.close()
-    return cursor.rowcount
+    return result
