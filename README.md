@@ -24,7 +24,7 @@
 
 ## Uso:
 
-- Paso 1: pip install -r requirements.txt
+- Paso 1: pip install -r requeriments.txt
 - Paso 2: py app.py
 
 ## Funcionamiento:
